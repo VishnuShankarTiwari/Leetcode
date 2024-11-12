@@ -1,3 +1,5 @@
+// binary seach 
+//sort items on price and then iterate queries find max by binary search
 
 
 class Solution {
@@ -41,5 +43,5 @@ class Solution {
 }
 
 
-//TC : O(n² + qn)
-//SC : O(qn) / constant
+//TC : O(n + qn + nlogn + qlogn) => O(NlogN)
+//SC : O(qn)
