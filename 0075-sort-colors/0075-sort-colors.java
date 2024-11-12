@@ -23,3 +23,6 @@ class Solution {
         nums[j] = temp;
     }
 }
+
+//TC : O(N)
+//SC : (1)
