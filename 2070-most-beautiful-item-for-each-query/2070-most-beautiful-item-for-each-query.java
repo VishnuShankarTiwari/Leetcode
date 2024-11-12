@@ -1,47 +1,46 @@
-// binary seach 
-//sort items on price and then iterate queries find max by binary search
+//    STATIC   QUERY PRECOMPUTATION 
+
+
+//sort items based on price
+//store queries to 2d integer array along with their respective index
+//sort 2d queries array
+//iterate on 2d queries array and find maxBeautyPrefix
+//simultaneously check the item price lessthan 2d queries price if less than then
+//store in answer array at query index from 2d query
+//return answer
 
 
 class Solution {
-
-    private int binarySearch(int[][] items, int target){
-        int left = 0;
-        int right = items.length -1;
-        int ans = 0;
-
-        while(left <= right){
-            int mid = (left + right) / 2;
-            if(items[mid][0] > target){
-                right = mid-1;
-            }else{
-                ans = Math.max(ans, items[mid][1]);
-                left = mid + 1;
-            }
-        }
-        return ans;
-    }
-
-
     public int[] maximumBeauty(int[][] items, int[] queries) {
         int n = items.length;
         int qn = queries.length;
         int[] ans = new int[qn];
-
         Arrays.sort(items, (a, b) -> a[0] - b[0]);
-        int maxBeautyPrefix = items[0][1];
-        for(int i=0; i<n; i++){
-            items[i][1] = Math.max(maxBeautyPrefix, items[i][1]);
-            maxBeautyPrefix = items[i][1];
+
+        int[][] indexedQueries = new int[qn][2];
+        for(int i=0; i<qn; i++){
+            indexedQueries[i][0] = queries[i];
+            indexedQueries[i][1] = i;
         }
 
+        Arrays.sort(indexedQueries, (a, b) -> a[0]- b[0]);
+        
+        int itemIndex = 0;
+        int maxBeautyPrefix = 0;
         for(int i=0; i<qn; i++){
-            ans[i] = binarySearch(items, queries[i]);
+            int queryPrice = indexedQueries[i][0];
+            int queryIndex = indexedQueries[i][1];
+    
+            while(itemIndex < items.length && items[itemIndex][0] <= queryPrice){
+                maxBeautyPrefix = Math.max(maxBeautyPrefix, items[itemIndex][1]);
+                itemIndex++;
+            }
+            ans[queryIndex] = maxBeautyPrefix;
         }
         return ans;
-        
     }
 }
 
 
-//TC : O(n + qn + nlogn + qlogn) => O(NlogN)
+//TC : O(2qn + nlogn + qlogq) => O(NlogN)
 //SC : O(qn)
