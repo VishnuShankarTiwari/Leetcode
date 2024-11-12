@@ -17,5 +17,5 @@ class Solution {
     }
 }
 
-TC : O(NlogN) + O(N)
-SC : (O)
+//TC : O(NlogN) + O(N)
+//SC : (O)
