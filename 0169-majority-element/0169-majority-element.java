@@ -1,21 +1,27 @@
+                    //Moore's Voting Algorithm//
+
+//we take current element as curr, increases the count if curr found next
+//or decrement the count if any other element is found 
+//if count reaches 0; we take new element as curr;
+//we are bound to get curr as majority, following this algo.
+
+
 class Solution {
     public int majorityElement(int[] nums) {
-        int n = nums.length/2;
-        Map<Integer, Integer> map = new HashMap<>();
+        int curr = nums[0];
+        int count = 1;
 
-        for(int ele : nums){
-            map.put(ele, map.getOrDefault(ele, 0) + 1);
-        }
-
-        for(int ele : map.keySet()){
-            if(map.get(ele) > n){
-                return ele;
+        for(int i=1; i<nums.length; i++){
+            if(nums[i] == curr){
+                count++;
+            }else{
+                count--;
+                if(count == 0){
+                    curr = nums[i];
+                    count = 1;
+                }
             }
         }
-
-        return -1;
+        return curr;
     }
 }
-
-//TC : O(NlogN) + O(N)
-//SC : (O)
