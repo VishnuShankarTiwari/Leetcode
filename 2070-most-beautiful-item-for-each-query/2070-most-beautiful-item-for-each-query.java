@@ -41,5 +41,3 @@ class Solution {
 }
 
 
-//TC : O(n² + qn)
-//SC : O(qn) / constant
