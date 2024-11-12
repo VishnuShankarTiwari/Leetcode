@@ -23,7 +23,14 @@ class Solution {
                 count--;
             }
         }
-        return curr;
+        count = 0;
+        for(int num : nums) {
+            if(num == curr) {
+                count++;
+            }
+        }
+
+        return (count > nums.length / 2) ? curr : -1;
     }
 }
 
