@@ -12,16 +12,20 @@ class Solution {
         int count = 1;
 
         for(int i=1; i<nums.length; i++){
-            if(nums[i] == curr){
+            if(count == 0){
+            curr = nums[i];
+            count = 1;
+            }
+            else if(nums[i] == curr){
                 count++;
-            }else{
+            }
+            else{
                 count--;
-                if(count == 0){
-                    curr = nums[i];
-                    count = 1;
-                }
             }
         }
         return curr;
     }
 }
+
+// TC: O(N)
+//SC : O(1)
