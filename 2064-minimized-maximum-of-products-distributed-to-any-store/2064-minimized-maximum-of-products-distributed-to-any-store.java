@@ -1,3 +1,10 @@
+//BINARY SEARCH
+
+// we find the maxQuantity
+//traverse from 0 to maxQuantity and find the minimum number of distribution to a specific store
+//we check what could be the number of stores required if we want to exhaust out all product from quantities and we gradually increase if its not possible and number of store comes under n we perform binary search
+
+
 class Solution {
     public int minimizedMaximum(int n, int[] quantities) {
         int m = quantities.length;
@@ -34,3 +41,6 @@ class Solution {
         return (numOfStoreRequired <= n);
     }
 }
+
+//TC : O(nlogx)
+//SC : O(1)
