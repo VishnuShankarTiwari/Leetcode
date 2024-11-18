@@ -1,31 +1,35 @@
-//  DP DP TABULATION TABULATION
+//  DP DP TABULATION    SPACE OPTIMIZED
 
-// using 2d dp array to store previous results and fetch from there
-// return dp[m-1][n-1]
+// using prev array to store previous results and fetch from there
+// temp will store the  results of curr row and we can get the row -1 from temp;
+// return prev[n-1]
 
 class Solution {
     public int uniquePaths(int m, int n) {
-        int[][] dp = new int[m][n];
+        int[] prev = new int[n];
+        Arrays.fill(prev, 0);
 
         for(int i=0; i<m; i++){
-            
+            int[] temp = new int[n];
+            Arrays.fill(temp, 0);
             for(int j=0; j<n; j++){
 
-                if(i == 0 && j == 0) dp[i][j] = 1;
+                if(i == 0 && j == 0) temp[j] = 1;
 
                 else{
                     
                     int up = 0, left = 0;
-                    if(i>0) up = dp[i-1][j];
-                    if(j>0) left = dp[i][j-1];
-                    dp[i][j] = up + left;
+                    if(i>0) up = prev[j];
+                    if(j>0) left = temp[j-1];
+                    temp[j] = up + left;
                 }
             }
+            prev = temp;
         }
         
-        return dp[m-1][n-1];
+        return prev[n-1];
     }
 }
 
 // TC: O(N X M)
-// SC : O(N X M)
+// SC : O(2N)
