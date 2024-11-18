@@ -1,3 +1,9 @@
+//BRUTE FORCE
+
+// just use a array to store the sum of k elements 
+// use modulo operator to use circular array
+
+
 class Solution {
     public int[] decrypt(int[] code, int k) {
         int n = code.length;
@@ -24,3 +30,6 @@ class Solution {
         return result;
     }
 }
+
+//TC: O(N²)
+//SC: O(N)
