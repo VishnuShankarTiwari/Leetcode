@@ -8,15 +8,13 @@ class Solution {
         int i = 0;
         int j = 0;
         while(i < n){
-            //remove leading space if any
-            while(i<n && sentence.charAt(i) == ' ') i++;
 
             //compare words
             while(i<n && j<m && sentence.charAt(i) == searchWord.charAt(j)){
                 i++;
                 j++;
             }
-            
+
             if(j == m) return idx;
             j=0;
 
@@ -31,3 +29,6 @@ class Solution {
         return -1;
     }
 }
+
+//TC : O(n)
+//SC : O(1)
