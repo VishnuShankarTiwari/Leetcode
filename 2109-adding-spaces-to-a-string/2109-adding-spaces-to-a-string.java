@@ -1,20 +1,30 @@
 class Solution {
     public String addSpaces(String s, int[] spaces) {
-        //stringbuilder to insert space
-        StringBuilder sb = new StringBuilder(s);
+        int n = s.length();
+        int m = spaces.length;
 
-        //counter to add indexes
+        //stringbuilder to insert space
+        StringBuilder sb = new StringBuilder();
+
+        //counter to add space at index in string at spaces[i]
         int i = 0;
-        for(int idx : spaces){
+        
+        for(int idx=0; idx<n; idx++){
             
-            //insert spaces
-            sb.insert(idx + i, " ");
-            i++;
+            //if idx is within spaces then append space
+            if(i < m && spaces[i] == idx){
+                sb.append(" ");
+                i++;
+            }
+
+            //append last left over string
+            sb.append(s.charAt(idx));    
         }
+        
 
         return sb.toString();
     }
 }
 
-//TC : O(n x m)
+//TC : O(n + m)
 //SC :O(1)
