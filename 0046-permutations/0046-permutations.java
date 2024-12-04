@@ -1,43 +1,38 @@
 class Solution {
     public List<List<Integer>> permute(int[] nums) {
+        //array list to return all permutations
         List<List<Integer>> res = new ArrayList<>();
 
-        //calling helper function
-        helper(nums, res, 0);
+        //calling back tracking function
+        backTrack(res, new ArrayList<>(), nums);
 
         return res;
+        
     }
 
-    private void helper(int[] nums, List<List<Integer>> res, int idx){
-        if(idx == nums.length){
-            //list of integer to store current permutation
-            List<Integer> list = new ArrayList<>();
-
-            //adding one by one elements to list
-            for(int i : nums){
-                list.add(i);
+    private void backTrack(List<List<Integer>> res, ArrayList<Integer> list, int[] nums){
+        for(int i : nums){
+            
+            //if list length becomes same
+            if(list.size() == nums.length){
+                res.add(new ArrayList<>(list));
+                return;
             }
 
-            //adding one permutation to result of all permutations
-            res.add(list);
-            return;
-        }
-        
-        //recursive call to helper and swaping to get next permutation
-        for(int i=idx; i<nums.length; i++){
-            swap(nums, i, idx);
-            helper(nums, res, idx+1);
-            swap(nums, i, idx);
-        }
-    }
+            //skip element if already in list
+            if(list.contains(i)) continue;
 
-    //swap function
-    private void swap(int[] nums, int i, int j){
-        int temp = nums[i];
-        nums[i] = nums[j];
-        nums[j] = temp;
+            //add the new element
+            list.add(i);
+
+            //backtrack to try out other element
+            backTrack(res, list, nums);
+
+            //remove the element
+            list.remove(list.size() - 1);
+        }
     }
 }
 
-//TC : O(n x n!)
-//SC : O(n)
+//TC : O(n! x n)
+//SC : O(n) --> stack space
