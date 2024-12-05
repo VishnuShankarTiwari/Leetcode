@@ -29,3 +29,6 @@ class Solution {
         return true;
     }
 }
+
+//TC : O(2n)
+//SC : O(n)
