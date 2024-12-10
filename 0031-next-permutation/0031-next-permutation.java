@@ -46,5 +46,5 @@ class Solution {
     }
 }
 
-//TC : O(2n)
+//TC : O(3n)
 //SC : O(1)
