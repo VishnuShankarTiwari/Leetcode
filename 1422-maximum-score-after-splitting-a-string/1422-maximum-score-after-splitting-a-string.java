@@ -2,24 +2,25 @@ class Solution {
     public int maxScore(String s) {
         int n = s.length();
 
-        //count ones and and in next iteration we simultaneously add the ones and zero in both partition while maximizing the result
-        int ones = 0;
-        for(int i=0; i<n; i++){
-            if(s.charAt(i) == '1') ones++;
-        }
+        //we will do in single iteration
+        //we will maximize zeros on left - ones on left 
+        //result will be max Difference + total ones
 
-        int res = 0;
+        int ones = 0;
         int zeros = 0;
+        int maxDiff = Integer.MIN_VALUE;
+
         for(int i=0; i<n-1; i++){
             if(s.charAt(i) == '0') zeros++;
-            else ones--;
+            else ones++;
 
-            res = Math.max(res, ones+zeros);
+            maxDiff = Math.max(maxDiff, zeros - ones);
         }
+        if(s.charAt(n-1) == '1') ones++;
 
-        return res;
+        return maxDiff + ones;
     }
 }
 
-//TC : O(2n)
+//TC : O(n)
 //SC : O(1)
