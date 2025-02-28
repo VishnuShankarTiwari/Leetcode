@@ -30,7 +30,7 @@ class Solution {
         }
         return sb.reverse().toString();
     }
-    
+
     public int[][] longestCommonSubsequence(String text1, String text2) {
         int n = text1.length();
         int m = text2.length();
@@ -53,3 +53,5 @@ class Solution {
         return dp;//recur(n,m,text1,text2,dp);
     }
 }
+
+//TC : O()
